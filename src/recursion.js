@@ -157,7 +157,18 @@ var palindrome = function(string) {
 // modulo(5,2) // 1
 // modulo(17,5) // 2
 // modulo(22,6) // 4
-var modulo = function(x, y) {};
+var modulo = function(x, y) {
+  if (x === 0 && y === 0) {
+    return NaN;
+  }
+  if (x === y) {
+    return 0;
+  }
+  if (x - y < 0) {
+    return x;
+  }
+  return modulo(x - y, y);
+};
 
 // 12. Write a function that multiplies two numbers without using the * operator or
 // Math methods.
@@ -235,7 +246,22 @@ var buildList = function(value, length) {};
 // For multiples of five, output 'Buzz' instead of the number.
 // For numbers which are multiples of both three and five, output “FizzBuzz” instead of the number.
 // fizzBuzz(5) // ['1','2','Fizz','4','Buzz']
-var fizzBuzz = function(n) {};
+var fizzBuzz = function(n) {
+  let returnArr = [];
+  if (n % 3 === 0 && n % 5 === 0) {
+    returnArr.push("FizzBuzz");
+  } else if (n % 3 === 0) {
+    returnArr.push("Fizz");
+  } else if (n % 5 === 0) {
+    returnArr.push("Buzz");
+  } else {
+    returnArr.push(n.toString());
+  }
+  if (n === 1) {
+    return returnArr;
+  }
+  return fizzBuzz(n - 1).concat(returnArr);
+};
 
 // 20. Count the occurence of a value in a list.
 // countOccurrence([2,7,4,4,1,4], 4) // 3
